@@ -31,8 +31,11 @@ function callBack(oldValue, newValue) {
 var options = {
             watchType: "attr",
             attr: "value",
-            timeOut: 100
+            timeOut: 100,
+            prop: null
         };
         
 $("#myWatch").selectWatch(callBack, options);
 ```
+
+<b>watchType</b>
