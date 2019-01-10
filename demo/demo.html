@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+
+    INPUT VALUE TEST:<br>
+    <input id="myInput" placeholder="write now" /><br>
+    <br>
+    SELECT VALUE TEST:<br>
+    <select id="mySelect">
+        <option value="1">Value Text 0</option>
+        <option value="2">Value Text 1</option>
+        <option value="3">Value Text 2</option>
+    </select>
+    <br>
+    <br>
+    ATTRIBUTE VALUE TEST:<br>
+    <div id="myDiv" MyAttribute="TestValue">This is a DIV</div>
+    <button id="ChangeAttribute" type="button">Change Attribute Value</button><button id="stopAttWatch">STOP WATCH</button><button id="continueAttWatch">CONTINUE WATCH</button><br>
+    <br>
+    ELEMENT TEXT TEST:<br>
+    <span id="mySpan">This is a SPAN element</span><br>
+    <button id="ChangeSpanText" type="button">Change Span Text</button><button id="stopElementWatch">STOP WATCH</button><button id="continueElementWatch">CONTINUE WATCH</button><br>
+    <br>
+    ELEMENT PROPERTY TEST:<br>
+    <b id="myB">This is a B Element</b><br>
+    <button id="ChangeBColor" type="button">Change color property</button><button id="stopPropWatch">STOP WATCH</button><button id="continuePropWatch">CONTINUE WATCH</button><br>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="selectWatch.min.js"></script>
+    <script>
+
+        //GLOBAL CALLBACK FUNCTION
+        function callBack(oldValue, newValue) {
+            alert("Old: " + oldValue + " New: " + newValue);
+        }
+
+        //FOR INPUT ELEMENT
+        var inputSettings = {
+            watchType: "input",
+            timeOut: 1000
+        };
+        $("#myInput").selectWatch(callBack, inputSettings);
+
+        //FOR SELECT ELEMENT
+        var selectSettings = {
+            watchType: "select",
+            timeOut: 0
+        };
+        $("#mySelect").selectWatch(callBack, selectSettings);
+
+        //FOR ATTRIBUTE
+        $("#ChangeAttribute").click(function () {
+            var randomValue = "random-" + Math.floor(Math.random() * 100);
+            $("#myDiv").attr("MyAttribute", randomValue);
+        });
+
+        $("#stopAttWatch").click(function () {
+            $("#myDiv").selectRemove();
+        });
+
+        $("#continueAttWatch").click(function () {
+            $("#myDiv").selectWatch(callBack, divSettings);
+        });
+
+        var divSettings = {
+            watchType: "attr",
+            attr: "MyAttribute"
+        };
+        $("#myDiv").selectWatch(callBack, divSettings);
+
+        //FOR ELEMENT TEXT/HTML
+        $("#ChangeSpanText").click(function () {
+            var randomValue = "This is a SPAN element " + Math.floor(Math.random() * 100);
+            $("#mySpan").text(randomValue);
+        });
+
+        $("#stopElementWatch").click(function () {
+            $("#mySpan").selectRemove();
+        });
+
+        $("#continueElementWatch").click(function () {
+            $("#mySpan").selectWatch(callBack, spanSettings);
+        });
+
+        var spanSettings = {
+            watchType: "element"
+        };
+        $("#mySpan").selectWatch(callBack, spanSettings);
+
+        //FOR ELEMENT PROPERTY
+        $("#ChangeBColor").click(function () {
+            var currentColor = $("#myB").css("color");
+            if (currentColor == "rgb(255, 0, 0)") {
+                $("#myB").css("color", "blue");
+            } else {
+                $("#myB").css("color", "red");
+            }
+        });
+
+        $("#stopPropWatch").click(function () {
+            $("#myB").selectRemove();
+        });
+
+        $("#continuePropWatch").click(function () {
+            $("#myB").selectWatch(callBack, bSettings);
+        });
+
+        var bSettings = {
+            watchType: "prop",
+            prop: "color"
+        };
+        $("#myB").selectWatch(callBack, bSettings);
+
+    </script>
+</body>
+</html>
