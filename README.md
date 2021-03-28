@@ -14,9 +14,10 @@ To use the plugin add a reference to jQuery and a reference to this plugin to yo
 
 > Make sure to include selectWatch.js script file after jquery.js
 ```javascript
-function callBack(oldValue, newValue) {
-   alert("Old: " + oldValue + " New: " + newValue);
-}
+function callBack(oldValue, newValue, currentElement) {
+            alert("Old: " + oldValue + " New: " + newValue);
+            console.log(currentElement);
+        }
 var settings = {
             watchType: "input",
             timeOut: 1000
