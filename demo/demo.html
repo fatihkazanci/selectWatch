@@ -29,12 +29,13 @@
     <button id="ChangeBColor" type="button">Change color property</button><button id="stopPropWatch">STOP WATCH</button><button id="continuePropWatch">CONTINUE WATCH</button><br>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="selectWatch.min.js"></script>
+    <script src="../SelectWatch.min.js"></script>
     <script>
 
         //GLOBAL CALLBACK FUNCTION
-        function callBack(oldValue, newValue) {
+        function callBack(oldValue, newValue, currentElement) {
             alert("Old: " + oldValue + " New: " + newValue);
+            console.log(currentElement);
         }
 
         //FOR INPUT ELEMENT

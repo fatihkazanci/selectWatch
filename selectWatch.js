@@ -58,7 +58,7 @@
                             oldAttrValue = newValue;
                         } else {
                             if (oldAttrValue != newValue) {
-                                callBack(oldAttrValue, newValue);
+                                callBack(oldAttrValue, newValue, thisElement);
                                 oldAttrValue = newValue;
                             }
                         }
@@ -75,7 +75,7 @@
                             oldElementValue = newElementValue;
                         } else {
                             if (oldElementValue != newElementValue) {
-                                callBack(oldElementValue, newElementValue);
+                                callBack(oldElementValue, newElementValue, thisElement);
                                 oldElementValue = newElementValue;
                             }
                         }
@@ -93,7 +93,7 @@
                             oldPropValue = newPropValue;
                         } else {
                             if (oldPropValue != newPropValue) {
-                                callBack(oldPropValue, newPropValue);
+                                callBack(oldPropValue, newPropValue, thisElement);
                                 oldPropValue = newPropValue;
                             }
                         }
@@ -104,11 +104,11 @@
             case typeInput:
                 var timer;
                 var oldValue = "";
-                $(thisElement).on("keypress", function () {
+                $(thisElement).on("keyup", function () {
                     clearInterval(timer);
                     timer = setInterval(function () {
                         var newValue = $(thisElement).val();
-                        callBack(oldValue, newValue);
+                        callBack(oldValue, newValue, thisElement);
                         if (oldValue != newValue) {
                             oldValue = newValue;
                         }
@@ -126,7 +126,7 @@
                     clearInterval(timerx);
                     timerx = setInterval(function () {
                         var newValue = $(thisElement).val();
-                        callBack(oldValuex, newValue);
+                        callBack(oldValuex, newValue, thisElement);
                         if (oldValuex != newValue) {
                             oldValuex = newValue;
                         }
